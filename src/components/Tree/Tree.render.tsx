@@ -22,6 +22,7 @@ const Tree: FC<ITreeProps> = ({
   lineBorderRadius,
   nodePadding,
   nodeType,
+  withPhoto,
 }) => {
   const { connect } = useRenderer();
   const [tree, setTree] = useState<any>(null);
@@ -34,6 +35,8 @@ const Tree: FC<ITreeProps> = ({
     flexDirection: 'column',
     width: 'fit-content',
     margin: 'auto',
+    backgroundColor: '#0000000a',
+    borderRadius: '10px',
   };
 
   const DefaultHeaderStyle: React.CSSProperties = {
@@ -42,7 +45,7 @@ const Tree: FC<ITreeProps> = ({
     justifyContent: 'space-between',
     alignItems: 'center',
     height: '100%',
-    boxShadow: '1px 2px 4px #ccc',
+    boxShadow: '1px 2px 4px #00000022',
     padding: '12px',
     gap: '10px',
     borderTopLeftRadius: '10px',
@@ -68,10 +71,19 @@ const Tree: FC<ITreeProps> = ({
     margin: 'auto',
   };
 
+  const emptyImageStyle: React.CSSProperties = {
+    margin: 'auto',
+  };
+
   const FullNameStyle: React.CSSProperties = {
     fontWeight: 'bold',
     fontFamily: 'Arial',
     fontSize: '14px',
+  };
+
+  const PhotoNode: FC<{ withPhoto: boolean, photo: string, style?: React.CSSProperties }> = ({ withPhoto, photo, style }) => {
+    if (!withPhoto) return null;
+    return (<img style={style} src={photo} className='TreeNodeImg' />);
   };
 
   const StyledNode: FC<{ label: string, color?: string, type?: string, photo?: string }> = ({ label, color, photo }) => {
@@ -92,15 +104,16 @@ const Tree: FC<ITreeProps> = ({
           border: `2px ${lineStyle} #${color}`,
         };
         return (
-          <div style={FullContainerStyle}>
-            <img style={FullImageStyle} src={`https://ui-avatars.com/api/?name=${encodeURIComponent(label)}&background=${color}&color=ffffff&size=64`} alt="" />
-            <div style={FullNameStyle}>{label}</div>
+          <div style={FullContainerStyle} className='TreeNode'>
+            <PhotoNode withPhoto={withPhoto} photo={photo} style={FullImageStyle} />
+            <div style={FullNameStyle} className='TreeNodeLabel'>{label}</div>
           </div>
         );
       case 'empty': // Empty style with only name
         return (
-          <div>
-            {label}
+          <div className='TreeNode'>
+            <PhotoNode withPhoto={withPhoto} photo={photo} style={emptyImageStyle} />
+            <span className='TreeNodeLabel'>{label}</span>
           </div>
         );
       default: //Default style with image and name
@@ -115,7 +128,7 @@ const Tree: FC<ITreeProps> = ({
         return (
           <div style={DefaultContainerStyle}>
             <div style={DefaultHeaderStyle}>
-              <img style={DefaultImageStyle} src={`https://ui-avatars.com/api/?name=${encodeURIComponent(label)}&background=${color}&color=ffffff&size=64`} alt="" />
+              <PhotoNode withPhoto={withPhoto} photo={photo} style={DefaultImageStyle} />
               <div style={DefaultNameStyle}>{label}</div>
             </div>
             <div style={DefaultFooterStyle}></div>

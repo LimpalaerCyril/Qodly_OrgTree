@@ -60,7 +60,13 @@ const commonSettings: TSetting[] = [
       { label: 'Full', value: 'full' },
       { label: 'Empty', value: 'empty' },
     ],
-  }
+  },
+  {
+    key: 'withPhoto',
+    label: 'With photo',
+    type: ESetting.CHECKBOX,
+    defaultValue: true,
+  },
 ];
 
 const Settings: TSetting[] = [

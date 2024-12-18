@@ -70,4 +70,5 @@ export interface ITreeProps extends webforms.ComponentProps {
   lineBorderRadius: string;
   nodePadding: string;
   nodeType: "default" | "full" | "empty";
+  withPhoto: boolean;
 }
