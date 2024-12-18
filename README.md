@@ -37,11 +37,11 @@ Here is the structure of the data that can be used :
 | `nodePadding`      | String | No       | Space between each node in the tree  (By default  "5px")                                                                            |
 
 The children nodes have this structure :
-| Name       | Type   | Required | Description                |
-| ---------- | ------ | -------- | -------------------------- |
-| `label`    | String | Yes      | Name of the current node.  |
-| `photo`    | Array  | No       | Photo of the current node. |
-| `children` | Array  | Yes      | Array of children nodes.   |
+| Name       | Type   | Required | Description                            |
+| ---------- | ------ | -------- | -------------------------------------- |
+| `label`    | String | Yes      | Name of the current node.              |
+| `photo`    | String | No       | Link to the photo of the current node. |
+| `children` | Array  | Yes      | Array of children nodes.               |
 
 an example of data that can be used :
 
