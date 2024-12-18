@@ -7,7 +7,7 @@ Qodly organizational tree Component using [react-organizational-chart](https://a
 Pie and donut charts are the same, with the only difference being that the donut chart has a hole in the center.
 The DataSource can be exactly the same for both of them.
 
-![Example of Pie and Donut charts](public/pie_donut.png)
+![Example of default organizational tree](Resources/default.png)
 
 | Name                  | Type    | Description                                                                                                                         |
 | --------------------- | ------- | ----------------------------------------------------------------------------------------------------------------------------------- |
