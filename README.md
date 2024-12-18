@@ -102,8 +102,8 @@ To customize the tree, you can use the following CSS classes :
 | `TreeNodeLabel`  | Class of the label in the nodes.                                                            |
 | `TreeNodeFooter` | Class of the footer in the nodes. Only available with the `nodeType` prop set to `default`. |
 
-`default` node type :
+`default` node type :  
 ![Decomposition of the structure of the "default" type node](Resources/defaultNode.png)
 
-`full` node type & `empty` node type :
+`full` node type & `empty` node type :  
 ![Decomposition of the structure of the "empty" & "full" type node](Resources/emptyNode.png)
