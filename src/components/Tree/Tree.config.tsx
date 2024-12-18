@@ -57,7 +57,14 @@ export default {
     },
   },
   defaultProps: {
-    name: 'Qodly',
+    lineHeight: '20px',
+    lineWidth: '1px',
+    lineColor: '#000',
+    lineStyle: 'solid',
+    lineBorderRadius: '5px',
+    nodePadding: '5px',
+    nodeType: 'default',
+    withPhoto: true,
   },
 } as T4DComponentConfig<ITreeProps>;
 

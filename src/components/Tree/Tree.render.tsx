@@ -126,12 +126,12 @@ const Tree: FC<ITreeProps> = ({
           borderBottomRightRadius: '10px',
         };
         return (
-          <div style={DefaultContainerStyle}>
+          <div style={DefaultContainerStyle} className='TreeNode'>
             <div style={DefaultHeaderStyle}>
               <PhotoNode withPhoto={withPhoto} photo={photo} style={DefaultImageStyle} />
-              <div style={DefaultNameStyle}>{label}</div>
+              <div style={DefaultNameStyle} className='TreeNodeLabel'>{label}</div>
             </div>
-            <div style={DefaultFooterStyle}></div>
+            <div style={DefaultFooterStyle} className='TreeNodeFooter'></div>
           </div>
         );
     }
@@ -162,7 +162,7 @@ const Tree: FC<ITreeProps> = ({
       }
       const TreeNodeRecursive: React.FC<TreeNodeRecursiveProps> = ({ node }) => {
         return (
-          <TreeNode label={<StyledNode label={node.label} />}>
+          <TreeNode label={<StyledNode label={node.label} photo={node.photo} />}>
             {node.children &&
               node.children.map((child, index) => (
                 <TreeNodeRecursive key={index} node={child} />
@@ -175,7 +175,7 @@ const Tree: FC<ITreeProps> = ({
       const OrganizationalChart: React.FC = () => {
         return (
           <OrgTree
-            label={<StyledNode label={data.label} />}
+            label={<StyledNode label={data.label} photo={data.photo} />}
             lineHeight={lineHeight}
             lineWidth={lineWidth}
             lineColor={lineColor}

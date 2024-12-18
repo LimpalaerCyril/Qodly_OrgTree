@@ -6,13 +6,13 @@ const commonSettings: TSetting[] = [
     key: 'lineHeight',
     label: 'Tree line height',
     type: ESetting.TEXT_FIELD,
-    defaultValue: '20px',
+    placeholder: '20px',
   },
   {
     key: 'lineWidth',
     label: 'Tree line width',
     type: ESetting.TEXT_FIELD,
-    defaultValue: '20px',
+    placeholder: '1px',
   },
   {
     key: 'lineColor',
@@ -40,15 +40,15 @@ const commonSettings: TSetting[] = [
   },
   {
     key: 'lineBorderRadius',
-    label: 'Tree line border radius',
+    label: 'Tree line radius',
     type: ESetting.TEXT_FIELD,
-    defaultValue: '5px',
+    placeholder: '5px',
   },
   {
     key: 'nodePadding',
     label: 'Tree node padding',
     type: ESetting.TEXT_FIELD,
-    defaultValue: '5px',
+    placeholder: '5px',
   },
   {
     key: 'nodeType',
@@ -63,7 +63,7 @@ const commonSettings: TSetting[] = [
   },
   {
     key: 'withPhoto',
-    label: 'With photo',
+    label: 'With photos',
     type: ESetting.CHECKBOX,
     defaultValue: true,
   },
