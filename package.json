@@ -18,26 +18,26 @@
   },
   "overrides": {
     "@ws-ui/webform-editor": {
-      "@ws-ui/code-editor": "0.2.9",
-      "@ws-ui/icons": "0.0.22",
-      "@ws-ui/shared": "0.2.9",
-      "@ws-ui/store": "0.2.9",
+      "@ws-ui/code-editor": "0.2.23",
+      "@ws-ui/icons": "0.0.29",
+      "@ws-ui/shared": "0.2.27",
+      "@ws-ui/store": "0.2.33",
       "@ws-ui/craftjs-core": "0.2.14",
       "@ws-ui/craftjs-layers": "0.2.4",
       "@ws-ui/craftjs-utils": "0.2.2"
     },
     "@ws-ui/store": {
-      "@ws-ui/icons": "0.0.22"
+      "@ws-ui/icons": "0.0.29"
     },
     "@ws-ui/shared": {
-      "@ws-ui/icons": "0.0.22"
+      "@ws-ui/icons": "0.0.29"
     }
   },
   "dependencies": {
     "@ws-ui/craftjs-core": "0.2.14",
     "@ws-ui/craftjs-layers": "0.2.4",
     "@ws-ui/craftjs-utils": "0.2.3",
-    "@ws-ui/webform-editor": "0.3.20",
+    "@ws-ui/webform-editor": "0.3.59",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-organizational-chart": "^2.2.1"
