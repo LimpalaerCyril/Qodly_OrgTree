@@ -65,6 +65,7 @@ export default {
     nodePadding: '5px',
     nodeType: 'default',
     withPhoto: true,
+    editable: true,
   },
 } as T4DComponentConfig<ITreeProps>;
 
@@ -78,4 +79,5 @@ export interface ITreeProps extends webforms.ComponentProps {
   nodePadding: string;
   nodeType: "default" | "full" | "empty";
   withPhoto: boolean;
+  editable: boolean;
 }

@@ -2,10 +2,11 @@ import { useEnhancedNode } from '@ws-ui/webform-editor';
 import cn from 'classnames';
 import { FC, useMemo } from 'react';
 import { Tree as OrgTree, TreeNode } from 'react-organizational-chart';
+import { GrAdd } from 'react-icons/gr';
 
 import { ITreeProps } from './Tree.config';
 
-const Tree: FC<ITreeProps> = ({ style, className, classNames, lineHeight, lineWidth, lineColor, lineStyle, lineBorderRadius, nodePadding, nodeType, withPhoto }) => {
+const Tree: FC<ITreeProps> = ({ style, className, classNames, lineHeight, lineWidth, lineColor, lineStyle, lineBorderRadius, nodePadding, nodeType, withPhoto, editable }) => {
   const {
     connectors: { connect },
   } = useEnhancedNode();
@@ -61,14 +62,38 @@ const Tree: FC<ITreeProps> = ({ style, className, classNames, lineHeight, lineWi
     fontSize: '14px',
   };
 
+  const AddButtonStyle: React.CSSProperties = {
+    position: 'relative',
+    top: '-8px',
+    height: '20px',
+    width: '20px',
+    fontSize: '14px',
+    backgroundColor: '#ffffff',
+    borderRadius: '50%',
+    boxShadow: '1px 2px 4px #00000022',
+    zIndex: 1,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  };
+
   const PhotoNode: FC<{ withPhoto: boolean, photo: string, style?: React.CSSProperties }> = ({ withPhoto, photo, style }) => {
     if (!withPhoto) return null;
     return (<img style={style} src={photo} className='TreeNodeImg' />);
   };
 
+  const AddButtonNode: FC<{ editable: boolean }> = ({ editable }) => {
+    if (!editable) return null;
+    return (
+      <div style={{ position: 'relative', bottom: '-10px', height: '0', display: 'flex', gap: '5px', alignItems: 'center', justifyContent: 'center' }}>
+        <button className='TreeNodeAddButton' style={AddButtonStyle} disabled><GrAdd /></button>
+      </div>);
+  }
+
   const StyledNode: FC<{ label: string, color?: string, type?: string, photo?: string }> = ({ label, color, photo }) => {
     color = color || generateRandomColor();
     photo = photo || `https://ui-avatars.com/api/?name=${encodeURIComponent(label)}&background=${color}&color=ffffff&size=64`;
+
     switch (nodeType) {
       case 'full': //Full style with image and name
         var FullContainerStyle: React.CSSProperties = {
@@ -87,6 +112,7 @@ const Tree: FC<ITreeProps> = ({ style, className, classNames, lineHeight, lineWi
           <div style={FullContainerStyle} className='TreeNode'>
             <PhotoNode withPhoto={withPhoto} photo={photo} style={FullImageStyle} />
             <div style={FullNameStyle} className='TreeNodeLabel'>{label}</div>
+            <AddButtonNode editable={editable} />
           </div>
         );
       case 'empty': // Empty style with only label in a span
@@ -94,6 +120,7 @@ const Tree: FC<ITreeProps> = ({ style, className, classNames, lineHeight, lineWi
           <div className='TreeNode'>
             <PhotoNode withPhoto={withPhoto} photo={photo} style={emptyImageStyle} />
             <span className='TreeNodeLabel'>{label}</span>
+            <AddButtonNode editable={editable} />
           </div>
         );
       default: //Default style with image and name
@@ -109,9 +136,10 @@ const Tree: FC<ITreeProps> = ({ style, className, classNames, lineHeight, lineWi
           <div style={DefaultContainerStyle}>
             <div style={DefaultHeaderStyle}>
               <PhotoNode withPhoto={withPhoto} photo={photo} style={DefaultImageStyle} />
-              <div style={DefaultNameStyle}>{label}</div>
+              <div style={DefaultNameStyle} className='TreeNodeLabel'>{label}</div>
             </div>
             <div style={DefaultFooterStyle}></div>
+            <AddButtonNode editable={editable} />
           </div>
         );
     }
@@ -151,11 +179,13 @@ const Tree: FC<ITreeProps> = ({ style, className, classNames, lineHeight, lineWi
         </TreeNode>
       </OrgTree >
     );
-  }, [lineHeight, lineWidth, lineColor, lineStyle, lineBorderRadius, nodePadding, nodeType, withPhoto]);
+  }, [lineHeight, lineWidth, lineColor, lineStyle, lineBorderRadius, nodePadding, nodeType, withPhoto, editable]);
 
   return (
-    <div ref={connect} style={style} className={cn(className, classNames)}>
-      {tree}
+    <div ref={connect} style={style} className={cn(classNames, className)}>
+      <div style={{ paddingBottom: '14px', paddingTop: '14px' }}>
+        {tree}
+      </div>
     </div>
   )
 };

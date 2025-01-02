@@ -67,6 +67,12 @@ const commonSettings: TSetting[] = [
     type: ESetting.CHECKBOX,
     defaultValue: true,
   },
+  {
+    key: 'editable',
+    label: 'Editable',
+    type: ESetting.CHECKBOX,
+    defaultValue: true,
+  },
 ];
 
 const Settings: TSetting[] = [
