@@ -80,4 +80,10 @@ export interface ITreeProps extends webforms.ComponentProps {
   nodeType: "default" | "full" | "empty";
   withPhoto: boolean;
   editable: boolean;
+  customInfos: ICustomInfo[];
+}
+
+export interface ICustomInfo {
+  infoName: string;
+  infoType: 'string' | 'number' | 'dateTime' | 'boolean';
 }
