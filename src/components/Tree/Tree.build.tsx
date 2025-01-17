@@ -123,7 +123,7 @@ const Tree: FC<ITreeProps> = ({ style, className, classNames, lineHeight, lineWi
         </TreeNode>
       </OrgTree >
     );
-  }, [lineHeight, lineWidth, lineColor, lineStyle, lineBorderRadius, nodePadding, nodeType, withPhoto, editable, customInfos.length]);
+  }, [lineHeight, lineWidth, lineColor, lineStyle, lineBorderRadius, nodePadding, nodeType, withPhoto, editable, customInfos]);
 
   return (
     <div ref={connect} style={style} className={cn(classNames, className)}>
