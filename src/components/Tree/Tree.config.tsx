@@ -1,6 +1,6 @@
 import { EComponentKind, T4DComponentConfig } from '@ws-ui/webform-editor';
 import { Settings } from '@ws-ui/webform-editor';
-import { MdOutlineTextSnippet } from 'react-icons/md';
+import { RiOrganizationChart } from "react-icons/ri";
 
 import TreeSettings, { BasicSettings } from './Tree.settings';
 
@@ -21,7 +21,7 @@ export default {
     settings: TreeSettings,
     displayName: 'Tree',
     exposed: true,
-    icon: MdOutlineTextSnippet,
+    icon: RiOrganizationChart,
     events: [
       {
         label: 'On Click',
