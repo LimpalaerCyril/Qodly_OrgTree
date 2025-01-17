@@ -85,7 +85,7 @@ const Tree: FC<ITreeProps> = ({
         if (!node) return;
         if (node.TN_UID === treeNodeUID) {
           node.children = node.children || [];
-          node.children.push({ label: 'New Node', TN_editing: true });
+          node.children.push({ label: 'New', TN_editing: true });
         }
         if (node.children) {
           node.children.forEach((child) => addNode(child));
@@ -199,7 +199,7 @@ const Tree: FC<ITreeProps> = ({
 
     if (isNew) {
       //if new add input field
-      label = label || 'New Node';
+      label = label || 'New';
       return (
         <div style={{ display: 'flex', gap: '5px' }}>
           <input className={['TreeNodeLabel', 'TreeNodeLabelInput', className].join(" ")} data-nodeUID={treeNodeUID} type='text' defaultValue={label} />
@@ -219,7 +219,7 @@ const Tree: FC<ITreeProps> = ({
         <div className={treeStyle.TN_CustomInfoNode} style={{ marginTop: '10px' }}>
           {customInfos.map((customInfo, index) => {
             return (
-              <input key={index} className={['TreeNodeLabel', 'TreeNodeCustomInput', className].join(" ")} data-nodeUID={treeNodeUID} data-customInfo={customInfo.infoName} type={customInfo.infoType} defaultValue={node[customInfo.infoName]} />
+              <input key={index} className={['TreeNodeLabel', 'TreeNodeCustomInput', className].join(" ")} data-nodeUID={treeNodeUID} data-customInfo={customInfo.infoName} type={customInfo.infoType} defaultValue={node[customInfo.infoName]} placeholder={customInfo.infoName} />
             );
           })}
         </div>
