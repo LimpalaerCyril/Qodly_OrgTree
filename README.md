@@ -1,6 +1,6 @@
 # Overview Qodly_OrgTree
 
-Qodly organizational tree Component using [react-organizational-chart](https://apexcharts.com/)
+Qodly organizational tree Component using [react-organizational-chart](https://www.npmjs.com/package/react-organizational-chart)
 
 ## Tree
 
