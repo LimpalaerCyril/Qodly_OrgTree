@@ -1,0 +1,155 @@
+.TN_DefaultContainerStyle {
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    margin: auto;
+    background-color: #0000000a;
+    border-radius: 10px;
+}
+
+.TN_DefaultHeaderStyle {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    box-shadow: 1px 2px 4px #00000022;
+    padding: 12px;
+    gap: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    flex-wrap: wrap;
+}
+
+.TN_DefaultImageStyle {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.TN_DefaultNameStyle {
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+}
+
+.TN_FullNameStyle {
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+}
+
+.TN_FullImageStyle {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin: auto;
+}
+
+.TN_FullContainerStyle {
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    margin: auto;
+    padding: 6px;
+    gap: 10px;
+    border-radius: 10px;
+    min-width: 130px;
+}
+
+.TN_EmptyImageStyle {
+    margin: auto;
+}
+
+.TN_EditButtonStyle {
+    position: relative;
+    top: -8px;
+    height: 20px;
+    width: 20px;
+    font-size: 12px;
+    background-color: #ffc107;
+    border-radius: 50%;
+    box-shadow: 1px 2px 4px #00000022;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.TN_AddButtonDivStyle {
+    position: relative;
+    bottom: -10px;
+    height: 0;
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    justify-content: center
+}
+
+.TN_AddButtonStyle {
+    position: relative;
+    top: -8px;
+    height: 20px;
+    width: 20px;
+    font-size: 14px;
+    background-color: #ffffff;
+    border-radius: 50%;
+    box-shadow: 1px 2px 4px #00000022;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.TN_RemoveButtonDivStyle {
+    position: relative;
+    bottom: -10px;
+    height: 0;
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    justify-content: center;
+}
+
+.TN_ApproveButtonStyle {
+    position: relative;
+    top: -8px;
+    height: 20px;
+    width: 20px;
+    font-size: 14px;
+    border-radius: 50%;
+    background-color: #28a745;
+    color: white;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.TN_RemoveButtonStyle {
+    position: relative;
+    top: -8px;
+    height: 20px;
+    width: 20px;
+    font-size: 12px;
+    background-color: #dc3545;
+    border-radius: 50%;
+    box-shadow: 1px 2px 4px #00000022;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.TN_DefaultFooterStyle {
+    margin-top: auto;
+    border-bottom-width: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.TN_CustomInfoNode {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}

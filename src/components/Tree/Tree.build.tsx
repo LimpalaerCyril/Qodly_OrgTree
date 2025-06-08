@@ -2,116 +2,88 @@ import { useEnhancedNode } from '@ws-ui/webform-editor';
 import cn from 'classnames';
 import { FC, useMemo } from 'react';
 import { Tree as OrgTree, TreeNode } from 'react-organizational-chart';
-
+import { GrAdd } from 'react-icons/gr';
+import treeStyle from './Tree.module.css';
 import { ITreeProps } from './Tree.config';
 
-const Tree: FC<ITreeProps> = ({ style, className, classNames, lineHeight, lineWidth, lineColor, lineStyle, lineBorderRadius, nodePadding, nodeType, withPhoto }) => {
+const Tree: FC<ITreeProps> = ({ style, className, classNames, lineHeight, lineWidth, lineColor, lineStyle, lineBorderRadius, nodePadding, nodeType, withPhoto, editable, customInfos }) => {
   const {
     connectors: { connect },
   } = useEnhancedNode();
 
-  const DefaultContainerStyle: React.CSSProperties = {
-    display: 'flex',
-    flexDirection: 'column',
-    width: 'fit-content',
-    margin: 'auto',
-    backgroundColor: '#0000000a',
-    borderRadius: '10px',
-  };
-
-  const DefaultHeaderStyle: React.CSSProperties = {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    height: '100%',
-    boxShadow: '1px 2px 4px #00000022',
-    padding: '12px',
-    gap: '10px',
-    borderTopLeftRadius: '10px',
-    borderTopRightRadius: '10px',
-  };
-
-  const DefaultImageStyle: React.CSSProperties = {
-    width: '50px',
-    height: '50px',
-    borderRadius: '50%',
-  };
-
-  const DefaultNameStyle: React.CSSProperties = {
-    fontWeight: 'bold',
-    fontFamily: 'Arial',
-    fontSize: '14px',
-  };
-
-  const FullImageStyle: React.CSSProperties = {
-    width: '50px',
-    height: '50px',
-    borderRadius: '50%',
-    margin: 'auto',
-  };
-
-  const emptyImageStyle: React.CSSProperties = {
-    margin: 'auto',
-  };
-
-  const FullNameStyle: React.CSSProperties = {
-    fontWeight: 'bold',
-    fontFamily: 'Arial',
-    fontSize: '14px',
-  };
-
-  const PhotoNode: FC<{ withPhoto: boolean, photo: string, style?: React.CSSProperties }> = ({ withPhoto, photo, style }) => {
+  const PhotoNode: FC<{ withPhoto: boolean, photo: string, className?: String }> = ({ withPhoto, photo, className }) => {
     if (!withPhoto) return null;
-    return (<img style={style} src={photo} className='TreeNodeImg' />);
+    return (<img src={photo} className={['TreeNodeImg', className].join(" ")} />);
+  };
+
+  const AddButtonNode: FC<{ editable: boolean }> = ({ editable }) => {
+    if (!editable) return null;
+    return (
+      <div className={treeStyle.TN_AddButtonDivStyle}>
+        <button className={['TreeNodeAddButton', treeStyle.TN_AddButtonStyle].join(" ")} disabled><GrAdd /></button>
+      </div>);
+  };
+
+  const CustomInfoNode: FC<{ className?: string }> = ({ className }) => {
+    if (!customInfos) return null;
+    return (
+      <div className={treeStyle.TN_CustomInfoNode}>
+        {
+          customInfos.map((customInfo, index) => {
+            var currentClassName = ['TreeNodeLabel', `TreeNode${customInfo.infoName}`, `TreeNode${customInfo.infoType}`];
+            className && currentClassName.push(className);
+            return (
+              <div key={index} className={currentClassName.join(" ")}>{customInfo.infoName}</div>
+            );
+          })
+        }
+      </div >
+    );
   };
 
   const StyledNode: FC<{ label: string, color?: string, type?: string, photo?: string }> = ({ label, color, photo }) => {
     color = color || generateRandomColor();
     photo = photo || `https://ui-avatars.com/api/?name=${encodeURIComponent(label)}&background=${color}&color=ffffff&size=64`;
+
     switch (nodeType) {
       case 'full': //Full style with image and name
         var FullContainerStyle: React.CSSProperties = {
-          display: 'flex',
-          flexDirection: 'column',
-          width: 'fit-content',
-          margin: 'auto',
-          padding: '6px',
-          gap: '10px',
-          borderRadius: "10px",
-          minWidth: '130px',
           backgroundColor: `#${color}44`,
           border: `2px ${lineStyle} #${color}`,
         };
         return (
-          <div style={FullContainerStyle} className='TreeNode'>
-            <PhotoNode withPhoto={withPhoto} photo={photo} style={FullImageStyle} />
-            <div style={FullNameStyle} className='TreeNodeLabel'>{label}</div>
+          <div className={['TreeNode', treeStyle.TN_FullContainerStyle].join(" ")} style={FullContainerStyle}>
+            <PhotoNode withPhoto={withPhoto} photo={photo} className={treeStyle.TN_FullImageStyle} />
+            <div className={['TreeNodeLabel', treeStyle.TN_FullNameStyle].join(" ")}>{label}</div>
+            <CustomInfoNode className={treeStyle.TN_FullNameStyle} />
+            <AddButtonNode editable={editable} />
           </div>
         );
       case 'empty': // Empty style with only label in a span
         return (
           <div className='TreeNode'>
-            <PhotoNode withPhoto={withPhoto} photo={photo} style={emptyImageStyle} />
+            <PhotoNode withPhoto={withPhoto} photo={photo} className={treeStyle.TN_EmptyImageStyle} />
             <span className='TreeNodeLabel'>{label}</span>
+            <CustomInfoNode />
+            <AddButtonNode editable={editable} />
           </div>
         );
       default: //Default style with image and name
         var DefaultFooterStyle: React.CSSProperties = {
-          marginTop: 'auto',
           borderBottomColor: `#${color}`,
           borderBottomStyle: lineStyle,
-          borderBottomWidth: '10px',
-          borderBottomLeftRadius: '10px',
-          borderBottomRightRadius: '10px',
         };
         return (
-          <div style={DefaultContainerStyle}>
-            <div style={DefaultHeaderStyle}>
-              <PhotoNode withPhoto={withPhoto} photo={photo} style={DefaultImageStyle} />
-              <div style={DefaultNameStyle}>{label}</div>
+          <div className={treeStyle.TN_DefaultContainerStyle}>
+            <div className={treeStyle.TN_DefaultHeaderStyle}>
+              <PhotoNode withPhoto={withPhoto} photo={photo} className={treeStyle.TN_DefaultImageStyle} />
+              <div>
+                <div className={['TreeNodeLabel', treeStyle.TN_DefaultNameStyle].join(" ")}>{label}</div>
+                <CustomInfoNode className={treeStyle.TN_DefaultNameStyle} />
+              </div>
             </div>
-            <div style={DefaultFooterStyle}></div>
+            <div style={DefaultFooterStyle} className={treeStyle.TN_DefaultFooterStyle}></div>
+            <AddButtonNode editable={editable} />
           </div>
         );
     }
@@ -151,11 +123,13 @@ const Tree: FC<ITreeProps> = ({ style, className, classNames, lineHeight, lineWi
         </TreeNode>
       </OrgTree >
     );
-  }, [lineHeight, lineWidth, lineColor, lineStyle, lineBorderRadius, nodePadding, nodeType, withPhoto]);
+  }, [lineHeight, lineWidth, lineColor, lineStyle, lineBorderRadius, nodePadding, nodeType, withPhoto, editable, customInfos]);
 
   return (
-    <div ref={connect} style={style} className={cn(className, classNames)}>
-      {tree}
+    <div ref={connect} style={style} className={cn(classNames, className)}>
+      <div style={{ paddingBottom: '14px', paddingTop: '14px' }}>
+        {tree}
+      </div>
     </div>
   )
 };

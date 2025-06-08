@@ -1,6 +1,6 @@
 import { EComponentKind, T4DComponentConfig } from '@ws-ui/webform-editor';
 import { Settings } from '@ws-ui/webform-editor';
-import { MdOutlineTextSnippet } from 'react-icons/md';
+import { RiOrganizationChart } from "react-icons/ri";
 
 import TreeSettings, { BasicSettings } from './Tree.settings';
 
@@ -21,7 +21,7 @@ export default {
     settings: TreeSettings,
     displayName: 'Tree',
     exposed: true,
-    icon: MdOutlineTextSnippet,
+    icon: RiOrganizationChart,
     events: [
       {
         label: 'On Click',
@@ -65,6 +65,7 @@ export default {
     nodePadding: '5px',
     nodeType: 'default',
     withPhoto: true,
+    editable: true,
   },
 } as T4DComponentConfig<ITreeProps>;
 
@@ -78,4 +79,11 @@ export interface ITreeProps extends webforms.ComponentProps {
   nodePadding: string;
   nodeType: "default" | "full" | "empty";
   withPhoto: boolean;
+  editable: boolean;
+  customInfos: ICustomInfo[];
+}
+
+export interface ICustomInfo {
+  infoName: string;
+  infoType: 'string' | 'number' | 'dateTime' | 'boolean';
 }

@@ -67,6 +67,41 @@ const commonSettings: TSetting[] = [
     type: ESetting.CHECKBOX,
     defaultValue: true,
   },
+  {
+    key: 'editable',
+    label: 'Editable',
+    type: ESetting.CHECKBOX,
+    defaultValue: true,
+  },
+  {
+    type: ESetting.DATAGRID,
+    key: 'customInfos',
+    label: 'Custom Information',
+    titleProperty: 'infoName',
+    uniqueKey: 'infoName',
+    data: [
+      {
+        key: 'infoName',
+        label: 'Information key',
+        type: ESetting.TEXT_FIELD,
+        defaultValue: 'CustomInfo1',
+      },
+      {
+        key: 'infoType',
+        label: 'Information Type',
+        type: ESetting.SELECT,
+        defaultValue: 'string',
+        options: [
+          { value: 'string', label: 'Text' },
+          { value: 'number', label: 'Number' },
+          { value: 'checkbox', label: 'Boolean' },
+          { value: 'email', label: 'Email' },
+          { value: 'date', label: 'Date' },
+          { value: 'datetime-local', label: 'Datetime' },
+        ],
+      },
+    ],
+  },
 ];
 
 const Settings: TSetting[] = [
